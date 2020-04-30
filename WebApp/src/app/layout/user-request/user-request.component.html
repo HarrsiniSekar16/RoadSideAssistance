@@ -1,0 +1,53 @@
+ <!-- Nav Bar -->
+<app-navbar [title]="title">
+</app-navbar>
+
+<div class="example-table-container mat-elevation-z8" @routerTransition>
+    <table mat-table [dataSource]="dataSource" class="example-table" matSort >
+      <!-- Number Column -->
+      
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+        <td mat-cell *matCellDef="let i = index">{{i+pageIndex}}</td>
+      </ng-container>
+
+      <!-- Title Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Issue Description</th>
+        <td mat-cell *matCellDef="let row">{{row.description}}</td>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+        <td mat-cell *matCellDef="let row">{{row.state}}</td>
+      </ng-container>
+
+      <!-- Created Column -->
+      <ng-container matColumnDef="created">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Created Date
+        </th>
+        <td mat-cell *matCellDef="let row">{{row.created_Date | date}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef>
+          Details
+        </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button [ngStyle]="{'color': 'orange'}" (click)="redirectToDetails(element)">
+              <mat-icon class="mat-18">reorder</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[15, 25, 50, 100]" (page)="pageLoad($event)">
+  </mat-paginator>
+  </div>
+
+  
+

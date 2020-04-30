@@ -1,0 +1,11 @@
+<!-- Nav bar header-->
+<app-navbar [title]="title" [leftBtn]="leftBtn" (eventEmit)="outputemitted($event)">
+</app-navbar>
+
+<!-- Paypal api integration with client ID and Secret key -->
+<script src="https://www.paypal.com/sdk/js?client-id=ClientId&vault=true"> </script> 
+
+<!-- Paypal buttons -->
+<div fxLayoutAlign="center center" class="col">
+    <div #paypal></div>  
+</div>

@@ -1,0 +1,60 @@
+.loginCardSize {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0px;    
+}
+
+mat-error {
+    font-size: 10px;
+}
+
+.login {
+    margin: 100px auto;
+}
+
+.verification {
+    margin: 100px auto;
+}
+
+.register {
+    margin: 100px auto;
+}
+
+
+.loginPage {
+    background-image: url('../../assets/RoadSideAssistance.jpg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mat-card {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    mat-card-title {
+        color: white;
+    }
+}
+
+.verification {
+    .Resend {
+        margin-top: 20px;
+    }
+}
+//  ::ng-deep {
+
+// .custom-dialog-container > mat-dialog-container {
+//     width: 250px;
+// }
+
+// }
+

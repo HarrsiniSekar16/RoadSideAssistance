@@ -1,0 +1,133 @@
+<app-navbar [title]="title" [leftBtn]="leftBtn" [rightBtn]="rightBtn" [btnDisabled]="btnDisabled"
+    (eventEmit)="outputemitted($event)">
+</app-navbar>
+<br>
+<!-- Update Profile details form -->
+<form [formGroup]="updateForm" *ngIf="switch == false" fxLayout="column" class="flexColumn"
+    enctype="multipart/form-data" (ngSubmit)="updateUser()" @routerTransition>
+    <!-- Image Part -->
+    <div fxLayout="row" class="profileImage">
+        <!-- <img fxFlex="128px" src="http://placehold.it/128x128" class="profileIcon" onclick="openUploadImageDialogue()"> -->
+        <label class="hoverable" for="fileInput">
+            <!-- <img src="./assets/empty-profile.png"/> -->
+            <img src="{{blobUrl ? blobUrl : 'https://www.w3schools.com/howto/img_avatar.png'}}" />
+            <!-- <img src="url ? url : '{{blobUrl}}'"/> -->
+            <!-- url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" form>  -->
+            <div class="hover-text">Choose file</div>
+            <div class="background"></div>
+        </label>
+        <br />
+    </div>
+    <br>
+    <!-- Image Input -->
+    <input id="fileInput" class="fileInput" type='file' (click)="onClick($event)" (change)="onSelectFile($event)"
+        accept="image/x-png,image/gif,image/jpeg">
+    <div fxLayout="row">
+        <div fxFlex="100%">
+            <div fxLayoutAlign="center">
+                <button *ngIf="url" (click)="delete()" class="deleteButton">Remove Photo</button>
+            </div>
+        </div>
+    </div>
+   
+    <div class=matFormField>
+         <!-- First Name form field -->
+        <div fxLayout="row" class="formStart">
+            <div fxFlex="50%">
+                <mat-form-field fxLayoutAlign="center">
+                    <input type="text" matInput (input)="onClick($event)" formControlName="firstName"
+                        placeholder="First Name" required>
+                    <mat-error *ngIf="rf.firstName.invalid">{{getUpdateErrorMessage('firstName')}}</mat-error>
+                </mat-form-field>
+            </div>
+        <!-- Last Name form field -->
+            <div fxFlex="50%">
+                <mat-form-field fxLayoutAlign="center">
+                    <input type="text" matInput (input)="onClick($event)" formControlName="lastName"
+                        placeholder="Last Name" required>
+                    <mat-error *ngIf="rf.lastName.invalid">{{getUpdateErrorMessage('lastName')}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Email form field -->
+        <div fxLayout="row">
+            <div fxFlex="50%">
+                <mat-form-field fxLayoutAlign="center">
+                    <input type="text" readonly matInput formControlName="email" placeholder="Email">
+                </mat-form-field>
+            </div>
+        <!-- Mobile Number form field -->
+            <div fxFlex="50%">
+                <mat-form-field fxLayoutAlign="center">
+                    <input type="text" matInput (input)="onClick($event)" formControlName="mobile"
+                        placeholder="Mobile Number">
+                    <mat-error *ngIf="rf.mobile.invalid">{{getUpdateErrorMessage('mobileNumber')}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Gender Radio Forms -->
+        <div fxLayout="row">
+            <div fxFlex="50%">
+                <mat-radio-group formControlName="gender" fxLayoutAlign="space-around" class="radioButton">
+                    <mat-radio-button (click)="onClick($event)" value="M">Male</mat-radio-button>
+                    <mat-radio-button (click)="onClick($event)" value="F">Female</mat-radio-button>
+                    <mat-radio-button (click)="onClick($event)" value="O">Other</mat-radio-button>
+                </mat-radio-group>
+            </div>
+        <!-- Password form field -->
+            <div fxFlex="50%">
+                <mat-form-field fxLayoutAlign="center">
+                    <input type="password" readonly matInput formControlName="password" placeholder="Password">
+                </mat-form-field>
+            </div>
+        </div>
+        <!--  New Password form field -->
+        <div fxLayout="row">
+            <div fxFlex="50%">
+                <mat-form-field fxLayoutAlign="center">
+                    <input type="password" matInput (input)="onClick($event)" formControlName="newPassword"
+                        placeholder="New Password">
+                    <mat-error *ngIf="rf.newPassword.invalid">{{getUpdateErrorMessage('newPassword')}}</mat-error>
+                </mat-form-field>
+            </div>
+        <!-- Re-enter New Password form field -->    
+            <div fxFlex="50%">
+                <mat-form-field fxLayoutAlign="center">
+                    <input type="password" matInput (input)="onClick($event)" formControlName="confirmPassword"
+                        placeholder="Re-enter New Password">
+                    <mat-error *ngIf="rf.confirmPassword.invalid">{{getUpdateErrorMessage('confirmPassword')}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <!-- <div fxLayout="row">
+        <div fxFlex="100%">
+            <div fxLayoutAlign="center">
+                <button type="submit"  mat-button>Update</button>
+            </div>
+        </div>
+    </div> -->
+</form>
+<!--  Add Address form field -->
+<form [formGroup]="updateForm"></form>
+<div *ngIf="switch == true" (click)="addAddress()" (switcher)="outputemit($event)" @routerTransition>
+
+    <div fxLayout="row">
+        <div class="findVendor" fxLayout="column" fxFlex="50%">
+            <div fxLayoutAlign="center">
+                <mat-form-field class="addAddress">
+                    <input type="text" cdkTextareaAutosize [(ngModel)]="address" (ngModelChange)="getLatLong()" matInput
+                        placeholder="Current Address" [value]="address" rquired>
+                </mat-form-field>
+            </div>
+        </div>
+<!--  Google Maps -->
+        <div class="map" fxFlex="50%">
+            <agm-map [latitude]="lat" [zoom]="15" [longitude]="long">
+                <agm-marker [iconUrl]="icon" [latitude]="lat" [longitude]="long">
+                </agm-marker>
+            </agm-map>
+        </div>
+    </div>
+</div>

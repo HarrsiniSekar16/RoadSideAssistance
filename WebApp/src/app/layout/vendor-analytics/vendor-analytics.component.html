@@ -1,0 +1,14 @@
+<app-navbar [title]="title">
+</app-navbar>
+<br>
+<br>
+<!-- pie chart -->
+<div fxLayout="row" @routerTransition>
+    <div fxLayout="column" fxFlex="50%">
+        <div [chart]="pieChart"></div>
+    </div>
+    <!-- line Chart -->
+    <div fxLayout="column" fxFlex="50%">
+        <div [chart]="lineChart"></div>
+    </div>
+</div>

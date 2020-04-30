@@ -1,0 +1,49 @@
+<app-navbar [title]="title" [leftBtn]="leftBtn" [rightBtn]="rightBtn" [btnDisabled]="btndisabled" (eventEmit)="outputemitted($event)">
+
+</app-navbar>
+<br>
+<div *ngIf="switch == false" @routerTransition>
+    <!-- user request form -->
+    <form id="reqForm" class="reqForm" fxLayout="column" [formGroup]="requestForm">
+        <!-- vin number input form field -->
+        <div fxLayoutAlign="center">
+            <mat-form-field>
+                <input type="text" (ngModelChange)="checkInput()" matInput formControlName="vehicleNumber" maxlength="17" placeholder="Vehicle Identification Number">
+            </mat-form-field>
+        </div>
+        <!-- vehicle registeration number form field -->
+        <div fxLayoutAlign="center">
+            <mat-form-field>
+                <input type="text" (ngModelChange)="checkInput()" matInput required formControlName="vehicleRegNumber" placeholder="Registration Number">
+            </mat-form-field>
+        </div>
+        <!-- description form field -->
+        <div fxLayoutAlign="center center">
+            <mat-form-field>
+                <textarea matInput cdkTextareaAutosize (ngModelChange)="checkInput()" formControlName="description" required placeholder="Description">
+                     </textarea>
+            </mat-form-field>
+        </div>
+        <!-- message form field -->
+        <div fxLayoutAlign="center center">
+            <mat-form-field>
+                <textarea matInput cdkTextareaAutosize formControlName="message" placeholder="Message to Mechanic">
+                     </textarea>
+            </mat-form-field>
+        </div>
+        <!-- image upload  -->
+        <div fxLayoutAlign="center center">
+            <mat-file-upload (uploadClicked)="onUploadClicked($event)" [acceptedTypes]="'.png, .jpg, .jpeg'" [allowMultipleFiles]="true" [labelText]="'Select a file to upload:'">
+            </mat-file-upload>
+        </div>
+        <br>
+        <div fxLayoutAlign="center center">
+            <mat-error *ngIf="uploads == true">Incorrect File format</mat-error>
+        </div>
+        <br>
+    </form>
+</div>
+<div *ngIf="switch == true" @routerTransition>
+    <app-find-vendor [(vinData)]="vinData" (switcher)="outputemit($event)">
+    </app-find-vendor>
+</div>

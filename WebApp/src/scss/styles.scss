@@ -1,0 +1,138 @@
+/* You can add global styles to this file, and also import other style files */
+
+// for the angular material to work properly we need to have this in our main css
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+.layout {
+    background-color: orange !important;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100% !important;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .sidenav {
+        display: none;
+        min-width: 25%;
+    }
+}
+
+mat-sidenav-container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+.loginCardSize{
+
+.mat-form-field-label{
+  color: orange !important;
+}
+
+.mat-button {
+    background-color: orange  !important;
+}
+
+.mat-card-title {
+    color: orange  !important;
+}
+  
+
+.mat-radio-button{
+color: orange  !important;
+}
+
+.mat-radio-button~.mat-radio-button {
+        margin: 10px 0px 10px 60px;
+
+}
+
+.mat-form-field-underline, .mat-form-field-underline.mat-focused {
+    background-color:orange;
+  }
+
+.mat-form-field-ripple {
+    background-color: orange !important;
+}
+
+.mat-input-element {
+    color: orange;
+}
+
+.mat-form-field {
+    div {
+        width: 200px;
+    }
+
+}
+
+}
+
+
+.custom-dialog-container {
+    
+    .mat-dialog-container {
+    /* add your styles */
+    margin : 0px;
+    width: 300px;
+    height: 150px;
+    background-color: white;
+    padding: 0px;
+    .alert{
+        margin: 0px;
+        padding: 0px;
+        height: 35px;
+        background-color: black;
+        p { 
+            margin: 0px;
+            padding: 5px;
+            color: orange;
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+
+    .message{
+        margin: 0px;
+        padding: 0px;
+        height: 80px;
+        p { 
+            margin: 0px;
+            padding: 5px;
+            color:black;
+            font-size: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+
+    .confirm{
+        text-align: center;
+        button {
+        background-color: orange;  
+        cursor: pointer;
+        border: none;
+        }
+    }
+   
+}
+
+}   
+
+
+
+
+
+
+

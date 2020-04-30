@@ -1,0 +1,14 @@
+<mat-toolbar class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.xs="0">
+    <!-- left side button -->
+    <div fxLayoutAlign="start center" fxFlex="33%">
+        <button (click)="emit('left')" mat-button>{{leftBtn}}</button>
+    </div>
+    <!-- title  -->
+    <div fxLayoutAlign="center center" fxFlex="33%" class="navbar">
+        {{title}}
+    </div>
+    <!-- right side button -->
+    <div fxLayoutAlign="end center" fxFlex="33%">
+        <button (click)="emit('right')" mat-button [disabled]="btnDisabled">{{rightBtn}}</button>
+    </div>
+</mat-toolbar>

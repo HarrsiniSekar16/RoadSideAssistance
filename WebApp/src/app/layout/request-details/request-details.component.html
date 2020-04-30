@@ -1,0 +1,94 @@
+<!-- Nav bar header-->
+<app-navbar [title]="title" [leftBtn]="leftBtn" [rightBtn]="rightBtn" (eventEmit)="outputemitted($event)">
+</app-navbar>
+
+<br>
+<!-- mat form field to display the user request details -->
+<form [formGroup]="form" *ngIf="form && switch == false">
+    <div fxLayout="row" class="details">
+        <div fxLayout="column" fxFlex="50%">
+            <div fxLayoutAlign="center">
+                <mat-form-field>
+                    <input type="text" readonly matInput formControlName="name" placeholder="Name">
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center">
+                <mat-form-field>
+                    <input type="text" readonly matInput formControlName="mobile" placeholder="Contact">
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center">
+                <mat-form-field class="addAddress">
+                    <input type="text" readonly cdkTextareaAutosize [ngModel]="address" [ngModelOptions]="{standalone: true}" width="200px" matInput placeholder="Customer Address" [value]="address">
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center">
+                <mat-form-field>
+                    <input type="text" readonly matInput formControlName="vin" placeholder="Vehicle Identification Number">
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center">
+                <mat-form-field>
+                    <input type="text" readonly matInput formControlName="register_no" placeholder="Vehicle Registeration Number">
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center">
+                <mat-form-field>
+                    <input type="text" readonly matInput formControlName="time" placeholder="Estimated Time">
+                </mat-form-field>
+            </div>
+
+
+            <div fxLayoutAlign="center">
+                <mat-form-field>
+                    <input type="text" readonly matInput formControlName="description" placeholder=" Issue Description">
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center">
+                <mat-form-field>
+                    <input type="text" readonly matInput formControlName="message" placeholder="Message">
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutAlign="center" class="button">
+                <button (click)="getImages()" mat-button> View Images </button>
+            </div>
+
+        </div>
+<!-- google maps div to show the user location -->
+        <div class="map" fxFlex="50%">
+            <agm-map [latitude]="lat" [zoom]="15" [longitude]="long">
+                <agm-marker [iconUrl]="icon" [latitude]="lat" [longitude]="long">
+                </agm-marker>
+            </agm-map>
+        </div>
+    </div>
+</form>
+
+<!-- div to view images -->
+<div class="container" *ngIf="switch == true">
+    <div fxLayout="column" *ngFor="let i of rowImages">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="20px">
+            <div fxFlex="33%" *ngFor="let j of i">
+                <mat-card *ngIf="j.image != undefined">
+                    <img mat-card-image src="{{j.image}}" height="400px" (click)="expand(j.image)">
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal">
+    <div class="modal-content" *ngIf="expan == true">
+        <span (click)="spanClick()" class="close">&times;</span>
+        <div class="center">
+            <img src="{{imag}}" width="550px" height="550px" class="image">
+        </div>
+    </div>
+</div>

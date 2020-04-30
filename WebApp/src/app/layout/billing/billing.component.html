@@ -1,0 +1,44 @@
+<app-navbar [title]="title" [leftBtn]="leftBtn"  [rightBtn]="rightBtn" [btnDisabled]="btnDisabled" (eventEmit)="outputemitted($event)" >
+</app-navbar>
+
+<div class="example-table-container" @routerTransition>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+    <!-- Row Index Column -->
+    <ng-container matColumnDef="position">      
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+    <!-- Description Column -->
+    <ng-container matColumnDef="desc">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
+        <td mat-footer-cell *matFooterCellDef> Total Cost</td>
+    </ng-container>
+    <!-- Cost Column -->
+    <ng-container matColumnDef="estimatedCost">
+        <th mat-header-cell *matHeaderCellDef> Estimated Cost </th>
+        <td mat-cell *matCellDef="let element"> {{element.estimatedCost | currency}} </td>
+        <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+    </ng-container>
+    <!-- CheckBox Column -->
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>Check</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? isSomeSelected($event,row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+</table>
+<!-- Paginator -->
+<mat-paginator [pageSize]="10"  [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+</div>

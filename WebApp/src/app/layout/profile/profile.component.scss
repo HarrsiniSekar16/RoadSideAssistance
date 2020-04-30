@@ -1,0 +1,119 @@
+// CSS for mat form field
+.matFormField{
+::ng-deep mat-form-field {
+    div {
+        width: 90%;
+    } 
+    margin-left: 8%;       
+ } 
+}
+
+
+button {
+    background-color: orange ;
+}
+
+.imageButton{
+    color: grey;
+    background-color: whitesmoke;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+//mat radio button
+mat-radio-group mat-radio-button{
+    margin-top: 1%;
+    margin-left: 0.5%;
+    color: grey;
+}
+
+.radioButton{
+    margin-top: 2%;
+}
+.profileImage{
+   margin-left: 43%;
+}
+
+.deleteButton{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    font: grey;
+    cursor: pointer;
+}
+
+//css for profile picture
+p {
+    font-family: Lato;
+  }
+  
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
+  .hoverable{
+    position: relative;
+    display: block;
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+    border: 5px grey;
+    border-radius: 50%;
+  }
+  .hoverable .hover-text{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left:  50%;
+    transform: translate(-50%,-50%);   
+    z-index: 2;
+  }
+  .hoverable .background{
+    position: absolute;
+    display: none;
+    top: 0;
+    left:  0;
+    bottom: 0;
+    right: 0;
+    background-color:rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .hoverable:hover .hover-text{
+    display: block;
+  }
+  .hoverable:hover .background{
+    display: block;
+  }
+  
+  .fileInput{
+    display: none;
+  }
+
+  .addAddressButton{
+    color: solid black;
+    border-radius: 5px;
+  }
+
+  .addAddressButton:hover{
+    cursor: pointer;
+    
+  }
+
+  .map {
+    margin-top: 5%;
+    width: 100%;
+    min-height: 50vh;
+    agm-map {
+        height: 100%;
+        width: 80%;
+    }
+}
+
+.addAddress{
+  width: 61%;
+    margin-top: 30%;
+    margin-left: 20%;
+}
+

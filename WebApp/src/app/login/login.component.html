@@ -1,0 +1,120 @@
+<!-- example for column wise arrangement using fxlayout -->
+<div class="loginPage" fxFlexFill>
+    <!-- reference for fx layout -->
+    <!-- https://github.com/angular/flex-layout/wiki/fxLayoutGap-API -->
+    <!-- example for row wise fx -->
+    <mat-card class="loginCardSize" fxLayout="column" [ngSwitch]="view">
+        <!-- Top Toolbar -->
+        <mat-toolbar class="layout" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
+            <div fxLayoutAlign="center" fxFlex="10%"></div>
+            <div fxLayoutAlign="center center" fxFlex="80%" class="header"> Road Side Assistance</div>
+            <div *ngIf="view=='login'; else notShow" fxLayoutAlign="right" fxFlex="10%"><button (click)="signUp()" mat-button>User Registration</button></div>
+            <ng-template #notShow>
+                <div fxLayoutAlign="center" fxFlex="10%"><button (click)="login()" mat-button>Login</button></div>
+            </ng-template>
+        </mat-toolbar>
+        <!-- Register Div -->
+        <div class="register" *ngSwitchCase="'signUp'" fxLayoutAlign="center center">
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <div fxLayoutAlign="center">
+                    <mat-card-title> Register</mat-card-title>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="text" formControlName="userFirstName" matInput placeholder="First Name">
+                        <mat-error *ngIf="rf.userFirstName.invalid">{{getRegisterErrorMessage('userFirstName')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="text" formControlName="userLastName" matInput placeholder="Last Name">
+                        <mat-error *ngIf="rf.userLastName.invalid">{{getRegisterErrorMessage('userLastName')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- Radio Group  -->
+                <div fxLayoutAlign="center">
+                    <mat-radio-group formControlName="userType" class="radioButton" (change)="onChangeRadio($event)">
+                        <mat-radio-button value="user">User</mat-radio-button>
+                        <mat-radio-button value="vendor">Vendor</mat-radio-button>
+                        <mat-error *ngIf="rf.userType.invalid && submitted">{{getRegisterErrorMessage('userType')}}</mat-error>
+                    </mat-radio-group>
+                </div>
+
+                <div *ngIf="radioFilter=='vendor'" fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="text" formControlName="vendorLicense" matInput placeholder="Vendor License">
+                        <mat-error *ngIf="rf.vendorLicense.invalid">{{getRegisterErrorMessage('vendorLicense')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="radioFilter=='vendor'" fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="text" formControlName="companyName" matInput placeholder="Company Name">
+                        <mat-error *ngIf="rf.companyName.invalid">{{getRegisterErrorMessage('companyName')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="text" formControlName="userEmail" matInput placeholder="Email ID">
+                        <mat-error *ngIf="rf.userEmail.invalid">{{getRegisterErrorMessage('userEmail')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="password" formControlName="userPassword" matInput placeholder="Password">
+                        <mat-error *ngIf="rf.userPassword.invalid">{{getRegisterErrorMessage('userPassword')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="password" formControlName="confirmPassword" matInput placeholder="Re-Enter Password">
+                        <mat-error *ngIf="rf.confirmPassword.invalid">{{getRegisterErrorMessage('confirmPassword')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center"><button type="submit" mat-button>Sign Up</button></div>
+            </form>
+        </div>
+        <!-- Login Verification Token Div -->
+        <div *ngSwitchCase="'verification'" class="verification">
+            <form [formGroup]="verificationForm">
+                <div fxLayoutAlign="center">
+                    <mat-card-title> Please Verify</mat-card-title>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="text" formControlName="userEmail" matInput placeholder="Email ID">
+                        <mat-error *ngIf="vf.userEmail.invalid">{{getVerificationErrorMessage('userEmail')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="text" formControlName="verificationCode" matInput placeholder="Verification Code">
+                        <mat-error *ngIf="vf.verificationCode.invalid">{{getVerificationErrorMessage('verificationCode')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center"><button type="submit" (click)="verifyOrResend('Verify')" mat-button>Verify</button></div>
+                <div fxLayoutAlign="center" class="Resend"><button type="submit"  (click)="verifyOrResend('Resend')" mat-button>Resend Code</button></div>
+            </form>
+        </div>
+        <!-- Login Div -->
+        <div *ngSwitchDefault class="login">
+            <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
+                <div fxLayoutAlign="center">
+                    <mat-card-title> Login</mat-card-title>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="text" formControlName="userEmail" matInput placeholder="Email ID">
+                        <mat-error *ngIf="lf.userEmail.invalid">{{getLoginErrorMessage('userEmail')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center">
+                    <mat-form-field>
+                        <input type="password" formControlName="userPassword" matInput placeholder="Password">
+                        <mat-error *ngIf="lf.userPassword.invalid">{{getLoginErrorMessage('userPassword')}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="center"><button type="submit" mat-button>Sign In</button></div>
+            </form>
+        </div>
+    </mat-card>
+</div>
