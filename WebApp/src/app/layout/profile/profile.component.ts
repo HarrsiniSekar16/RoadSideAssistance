@@ -131,7 +131,7 @@ export class ProfileComponent implements OnInit {
     } else {
       this.lat = parseFloat(this.user.vendorLatitude);
       this.long = parseFloat(this.user.vendorLongitude);
-      this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.lat + "," + this.long + "&key=AIzaSyCNH7ZuXjNdXqZFzlpOB0snpBZjoUC5jRo").subscribe(
+      this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.lat + "," + this.long + "&key=A").subscribe(
         x => {
           x.results.slice(0, 1).forEach(y => this.address = y);
           this.address = this.address.formatted_address;
@@ -253,7 +253,7 @@ export class ProfileComponent implements OnInit {
 
     this.lat = position.coords.latitude;
     this.long = position.coords.longitude;
-    this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.lat + "," + this.long + "&key=AIzaSyCNH7ZuXjNdXqZFzlpOB0snpBZjoUC5jRo").subscribe(
+    this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.lat + "," + this.long + "&key=A").subscribe(
       x => {
         x.results.slice(0, 1).forEach(y => this.address = y);
         this.address = this.address.formatted_address;
@@ -263,7 +263,7 @@ export class ProfileComponent implements OnInit {
 
   //get latitude and longitude for the given address
   getLatLong() {
-    this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=AIzaSyCNH7ZuXjNdXqZFzlpOB0snpBZjoUC5jRo").subscribe(
+    this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=AI").subscribe(
       x => {
         x.results.slice(0, 1).forEach(y => {
           this.lat = y.geometry.location.lat;

@@ -76,7 +76,7 @@ export class FindVendorComponent {
     this.lat = position.coords.latitude;
     this.long = position.coords.longitude;
     this.emit();
-    this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.lat + "," + this.long + "&key=AIzaSyCNH7ZuXjNdXqZFzlpOB0snpBZjoUC5jRo").subscribe(
+    this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.lat + "," + this.long + "&key=").subscribe(
       x => {
         x.results.slice(0, 1).forEach(y => this.address = y);
         this.address = this.address.formatted_address;
@@ -117,7 +117,7 @@ export class FindVendorComponent {
 
 //co-ordinates for latitude and longitude
   getLatLong() {
-    this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=AIzaSyCNH7ZuXjNdXqZFzlpOB0snpBZjoUC5jRo").subscribe(
+    this.appService.getExternal("https://maps.googleapis.com/maps/api/geocode/json?address=" + this.address + "&key=A").subscribe(
       x => {
         x.results.slice(0, 1).forEach(y => {
           this.lat = y.geometry.location.lat;

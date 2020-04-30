@@ -115,7 +115,7 @@ export class RequestDetailsComponent implements OnInit {
 
   // method to point the address point on the maps
   addresspoint() {
-    this.appservice.getExternal("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.lat + "," + this.long + "&key=AIzaSyCNH7ZuXjNdXqZFzlpOB0snpBZjoUC5jRo").subscribe(
+    this.appservice.getExternal("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.lat + "," + this.long + "&key=AI").subscribe(
     x => {
       x.results.slice(0, 1).forEach(y => this.address = y);
       this.address = this.address.formatted_address;
