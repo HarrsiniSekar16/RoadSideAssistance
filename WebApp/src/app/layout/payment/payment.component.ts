@@ -20,8 +20,7 @@ export class PaymentComponent implements OnInit {
   planId: any;  
   subcripId: any;  
   total:any;
-  basicAuth = 'Basic AV-tdAXW3xgH638gCZDrkIMImXU1YCZqmwFzlpY1UCHpdsvnxE6ElFGFosRXoL_lJSWhHc2wwtmCdkmjEJgXQmhwMdpKu2zFHi-Dx0M5iH5sJdpzwNEB0JicpK5__UTbYys2GXOx1TLcUF1SthBkPk1cCMnCYRas';  //Pass your ClientId + scret key
-  
+  basicAuth = 'Basic AV';
   // to get the total amount to be paid based on the service
   product = {
      price: this.total,
